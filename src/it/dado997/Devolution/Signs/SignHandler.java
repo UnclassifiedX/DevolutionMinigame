@@ -28,7 +28,7 @@ public class SignHandler implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onTNTRunSignCreate(final SignChangeEvent e) {
+    public void onSignCreate(final SignChangeEvent e) {
         final Player player = e.getPlayer();
         if (e.getLine(0).equalsIgnoreCase("[Devolution]") || e.getLine(0).equalsIgnoreCase(ChatColor.BLUE + "[Devolution]")) {
             if (!player.hasPermission("devolution.setup")) {
