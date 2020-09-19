@@ -18,16 +18,15 @@ public class PlayerDeath implements Listener {
         Arena arena = ArenaFile.getInstance().getPlayerArena(player.getName());
 
         if(arena != null) {
-            e.setDeathMessage(ChatUtil.format(Messages.playerdeathtoothers));
+            String deathmessage = Messages.playerdeathtoothers;
+            deathmessage = deathmessage.replace("{PLAYER}", player.getName());
+            deathmessage = deathmessage.replace("{KILLER}", killer.getName());
+            e.setDeathMessage(ChatUtil.format(deathmessage));
             player.spigot().respawn();
             arena.getPlayerHandler().spectatePlayer(player);
-            if(arena.getPlayerHandler().getPlayersCanDevolute().contains(player)) {
-                arena.getPlayerHandler().getPlayersCanDevolute().remove(player);
-            }
+            arena.getPlayerHandler().getPlayersCanDevolute().remove(player);
 
-            if(arena.getPlayerHandler().getPlayersDevoluting().contains(player)) {
-                arena.getPlayerHandler().getPlayersDevoluting().remove(player);
-            }
+            arena.getPlayerHandler().getPlayersDevoluting().remove(player);
 
             if(!arena.getPlayerHandler().getPlayersCanDevolute().contains(killer)) {
                 arena.getPlayerHandler().getPlayersCanDevolute().add(killer);

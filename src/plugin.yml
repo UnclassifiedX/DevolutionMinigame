@@ -11,3 +11,5 @@ commands:
   devolutionadmin:
     description: The command for setup arenas of the Devolution plugin.
     aliases: [devadmin, DEVOLUTIONADMIN, DevolutionAdmin, dadmin]
+  devolutionadmin setarenabounds:
+    description: Sets the boundaries of the arena based on your WorldEdit selection or your p1 and p2 positions.

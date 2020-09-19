@@ -39,6 +39,7 @@ public class Messages {
     public static String playerrewardmessage;
     public static String invalidcommand;
     public static String devoluting;
+    public static String devolutewaiting;
     public static String cannotmovewhiledevoluting;
     public static String alreadyingame;
     public static String abilityavaible;
@@ -46,6 +47,7 @@ public class Messages {
     public static String abilityused;
     public static String respawning;
     public static String respawned;
+    public static String devolutetitle;
 
     public static void sendMessage(final Player player, final String message) {
         if (!message.equals("")) {
@@ -61,7 +63,7 @@ public class Messages {
 
     public static void loadMessages() {
         final File messageconfig = new File(Main.getInstance().getDataFolder(), "Messages.yml");
-        final FileConfiguration config = (FileConfiguration)YamlConfiguration.loadConfiguration(messageconfig);
+        final FileConfiguration config = YamlConfiguration.loadConfiguration(messageconfig);
         Messages.nopermission = config.getString("nopermission", Messages.nopermission);
         Messages.teleporttolobby = config.getString("teleporttolobby", Messages.teleporttolobby);
         Messages.availablearenas = config.getString("availablearenas", Messages.availablearenas);
@@ -88,6 +90,7 @@ public class Messages {
         Messages.playerrewardmessage = config.getString("playerrewardmessage", Messages.playerrewardmessage);
         Messages.invalidcommand = config.getString("invalidcommand", Messages.invalidcommand);
         Messages.devoluting = config.getString("devoluting", Messages.devoluting);
+        Messages.devolutewaiting = config.getString("devoluted", Messages.devolutewaiting);
         Messages.cannotmovewhiledevoluting = config.getString("playermovewhiledevoluting", Messages.cannotmovewhiledevoluting);
         Messages.alreadyingame = config.getString("alreadyingame", Messages.alreadyingame);
         Messages.abilityavaible = config.getString("abilityavaible", Messages.abilityavaible);
@@ -96,46 +99,48 @@ public class Messages {
         Messages.respawning = config.getString("respawning", Messages.respawning);
         Messages.respawned = config.getString("respawned", Messages.respawned);
         Messages.lobbynotset = config.getString("lobbynotset", Messages.lobbynotset);
+        Messages.devolutetitle = config.getString("devolutetitle", Messages.devolutetitle);
         saveMessages(messageconfig);
     }
 
     private static void saveMessages(final File messageconfig) {
-        final FileConfiguration config = (FileConfiguration)new YamlConfiguration();
-        config.set("nopermission", (Object)Messages.nopermission);
-        config.set("invalidcommand", (Object)Messages.invalidcommand);
-        config.set("teleporttolobby", (Object)Messages.teleporttolobby);
-        config.set("availablearenas", (Object)Messages.availablearenas);
-        config.set("arenawolrdna", (Object)Messages.arenawolrdna);
-        config.set("arenadisabled", (Object)Messages.arenadisabled);
-        config.set("arenarunning", (Object)Messages.arenarunning);
-        config.set("arenaregenerating", (Object)Messages.arenaregenerating);
-        config.set("arenavehicle", (Object)Messages.arenavehicle);
-        config.set("arenadisabling", (Object)Messages.arenadisabling);
-        config.set("lobbynotset", (Object)Messages.lobbynotset);
-        config.set("playerscountinarena", (Object)Messages.playerscountinarena);
-        config.set("limitreached", (Object)Messages.limitreached);
-        config.set("playerjoinedtoplayer", (Object)Messages.playerjoinedtoplayer);
-        config.set("playerjoinedtoothers", (Object)Messages.playerjoinedtoothers);
-        config.set("alreadyingame", (Object)Messages.alreadyingame);
-        config.set("playerlefttoplayer", (Object)Messages.playerlefttoplayer);
-        config.set("playerlefttoothers", (Object)Messages.playerlefttoothers);
-        config.set("playervotedforstart", (Object)Messages.playervotedforstart);
-        config.set("arenastarted", (Object)Messages.arenastarted);
-        config.set("arenacountdown", (Object)Messages.arenacountdown);
-        config.set("arenafinished", (Object)Messages.arenafinished);
-        config.set("abilityavaible", (Object)Messages.abilityavaible);
-        config.set("abilitynotavaible", (Object)Messages.abilitynotavaible);
-        config.set("abilityused", (Object)Messages.abilityused);
-        config.set("devoluting", (Object)Messages.devoluting);
-        config.set("devoluted", (Object)Messages.devoluting);
-        config.set("respawning", (Object)Messages.respawning);
-        config.set("respawned", (Object)Messages.respawned);
-        config.set("playermovewhiledevoluting", (Object)Messages.cannotmovewhiledevoluting);
-        config.set("playerwontoplayer", (Object)Messages.playerwontoplayer);
-        config.set("playerdeathtoplayer", (Object)Messages.playerdeathtoplayer);
-        config.set("playerdeathtoothers", (Object)Messages.playerdeathtoothers);
-        config.set("playerwonbroadcast", (Object)Messages.playerwonbroadcast);
-        config.set("playerrewardmessage", (Object)Messages.playerrewardmessage);
+        final FileConfiguration config = new YamlConfiguration();
+        config.set("nopermission", Messages.nopermission);
+        config.set("invalidcommand", Messages.invalidcommand);
+        config.set("teleporttolobby", Messages.teleporttolobby);
+        config.set("availablearenas", Messages.availablearenas);
+        config.set("arenawolrdna", Messages.arenawolrdna);
+        config.set("arenadisabled", Messages.arenadisabled);
+        config.set("arenarunning", Messages.arenarunning);
+        config.set("arenaregenerating", Messages.arenaregenerating);
+        config.set("arenavehicle", Messages.arenavehicle);
+        config.set("arenadisabling", Messages.arenadisabling);
+        config.set("lobbynotset", Messages.lobbynotset);
+        config.set("playerscountinarena", Messages.playerscountinarena);
+        config.set("limitreached", Messages.limitreached);
+        config.set("playerjoinedtoplayer", Messages.playerjoinedtoplayer);
+        config.set("playerjoinedtoothers", Messages.playerjoinedtoothers);
+        config.set("alreadyingame", Messages.alreadyingame);
+        config.set("playerlefttoplayer", Messages.playerlefttoplayer);
+        config.set("playerlefttoothers", Messages.playerlefttoothers);
+        config.set("playervotedforstart", Messages.playervotedforstart);
+        config.set("arenastarted", Messages.arenastarted);
+        config.set("arenacountdown", Messages.arenacountdown);
+        config.set("arenafinished", Messages.arenafinished);
+        config.set("abilityavaible", Messages.abilityavaible);
+        config.set("abilitynotavaible", Messages.abilitynotavaible);
+        config.set("abilityused", Messages.abilityused);
+        config.set("devoluting", Messages.devoluting);
+        config.set("devolutewaiting", Messages.devolutewaiting);
+        config.set("respawning", Messages.respawning);
+        config.set("respawned", Messages.respawned);
+        config.set("playermovewhiledevoluting", Messages.cannotmovewhiledevoluting);
+        config.set("playerwontoplayer", Messages.playerwontoplayer);
+        config.set("playerdeathtoplayer", Messages.playerdeathtoplayer);
+        config.set("playerdeathtoothers", Messages.playerdeathtoothers);
+        config.set("playerwonbroadcast", Messages.playerwonbroadcast);
+        config.set("playerrewardmessage", Messages.playerrewardmessage);
+        config.set("devolutetitle", Messages.devolutetitle);
         try {
             config.save(messageconfig);
         }
@@ -164,10 +169,11 @@ public class Messages {
         Messages.arenastarted = "&6Arena started.";
         Messages.arenacountdown = "&6Arena starts in {COUNTDOWN} seconds";
         Messages.arenafinished = "&6Arena ended.";
-        Messages.devoluting = "&a{TIME} seconds remaining for devolution";
+        Messages.devoluting = "&a{TIME} seconds remaining before devoluting.";
+        Messages.devolutewaiting = "&a{TIME} seconds remaining before re-entry.";
         Messages.playerwontoplayer = "&6You won the game";
-        Messages.playerdeathtoplayer = "&6You death.";
-        Messages.playerdeathtoothers = "&6Player {PLAYER} death.";
+        Messages.playerdeathtoplayer = "&6You died.";
+        Messages.playerdeathtoothers = "&6Player {PLAYER} was killed by {KILLER}.";
         Messages.playerwonbroadcast = "&9[Devolution] &a{PLAYER}&r won the game on arena &c{ARENA}";
         Messages.playerrewardmessage = "&6You have been rewarded: {REWARD}";
         Messages.invalidcommand = "&cInvalid command!";
@@ -179,6 +185,7 @@ public class Messages {
         Messages.respawning = "&a{TIME} seconds remaining for respawn.";
         Messages.respawned = "&aRespawned";
         Messages.lobbynotset = "&cLobby not set!";
+        Messages.devolutetitle = "&aCrouch To Devolute!";
     }
 
 }

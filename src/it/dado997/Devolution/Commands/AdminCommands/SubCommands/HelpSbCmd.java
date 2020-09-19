@@ -22,7 +22,7 @@ public class HelpSbCmd implements CommandHandler {
         player.sendMessage(ChatUtil.format("&7/devadmin setp1"));
         player.sendMessage(ChatUtil.format("&7/devadmin setp2"));
         player.sendMessage(ChatUtil.format("&7/devadmin clear"));
-        player.sendMessage(ChatUtil.format("&7/devadmin setarena <ArenaName>"));
+        player.sendMessage(ChatUtil.format("&7/devadmin setarenabounds <ArenaName>"));
         player.sendMessage(ChatUtil.format("&7/devadmin setlobby <ArenaName>"));
         player.sendMessage(ChatUtil.format("&7/devadmin setspawn <ArenaName>"));
         player.sendMessage(ChatUtil.format("&7/devadmin setdevolutespawn <ArenaName>"));

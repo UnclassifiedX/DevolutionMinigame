@@ -36,9 +36,9 @@ public class Devoluted extends BukkitRunnable {
     public void run() {
         if(time == 0) {
 
-            if((Main.getInstance().version <= 12)) {
+            if((Main.version <= 12)) {
                 creeperweapon = new ItemStack(Material.SULPHUR);
-            } else if((Main.getInstance().version >= 13 && Main.getInstance().release == 2) || Main.getInstance().version >= 14) {
+            } else if(Main.release == 2 || Main.version >= 14) {
                 creeperweapon = new ItemStack(Material.getMaterial(289));
             }
 
@@ -52,6 +52,7 @@ public class Devoluted extends BukkitRunnable {
                 player.setMaxHealth(38);
                 player.setHealth(38);
                 player.getInventory().addItem(new ItemStack(blazeweapon));
+                player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
                 DisguiseAPI.disguiseToAll(player, new MobDisguise(DisguiseType.getType(EntityType.BLAZE)).setViewSelfDisguise(false));
                 player.teleport(arena.getStructureManager().getSpawnPoint());
 
@@ -67,7 +68,10 @@ public class Devoluted extends BukkitRunnable {
                 player.setMaxHealth(35);
                 player.setHealth(35);
                 player.getInventory().addItem(new ItemStack(spiderweapon));
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1));
+                for(PotionEffect pe : player.getActivePotionEffects()) {
+                    player.removePotionEffect(pe.getType());
+                }
+                player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1, false, false));
                 DisguiseAPI.disguiseToAll(player, new MobDisguise(DisguiseType.getType(EntityType.SPIDER)).setViewSelfDisguise(false));
                 player.teleport(arena.getStructureManager().getSpawnPoint());
 
@@ -79,7 +83,6 @@ public class Devoluted extends BukkitRunnable {
                 player.getInventory().clear();
                 player.setMaxHealth(30);
                 player.setHealth(30);
-                player.getActivePotionEffects().clear();
                 creeperweapon.getItemMeta().setDisplayName(Main.getInstance().getConfig().getString("creeper-weapon-name"));
                 creeperweapon.hasItemMeta();
                 for(PotionEffect pe : player.getActivePotionEffects()) {
@@ -137,7 +140,7 @@ public class Devoluted extends BukkitRunnable {
         } else {
             time -= 1;
             if(time == 5 || time == 4 || time == 3 || time == 3 || time == 2 || time == 1) {
-                player.sendMessage(ChatUtil.format(Messages.devoluting).replace("{TIME}", String.valueOf(time)));
+                player.sendMessage(ChatUtil.format(Messages.devolutewaiting).replace("{TIME}", String.valueOf(time)));
             }
         }
     }

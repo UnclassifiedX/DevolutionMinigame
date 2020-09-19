@@ -32,16 +32,16 @@ public class GolemWeapon implements Listener {
 
         arena = ArenaFile.getInstance().getPlayerArena(player.getName());
 
-        if(e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
-            if(arena != null) {
-                if(arena.getPlayerHandler().getGolem().contains(player)) {
-                    if(arena.getPlayerHandler().getCanShot().contains(player)) {
-                        if(player.getItemInHand().getType() == Material.IRON_INGOT) {
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
+            if (arena != null) {
+                if (arena.getPlayerHandler().getGolem().contains(player)) {
+                    if (arena.getPlayerHandler().getCanShot().contains(player)) {
+                        if (player.getItemInHand().getType() == Material.IRON_INGOT) {
                             List<Entity> entities = player.getNearbyEntities(2, 2, 2);
 
-                            for(Entity en : entities) {
-								Damageable d = (Damageable) en;
-                                if(d.getHealth() <= 6) {
+                            for (Entity en : entities) {
+                                Damageable d = (Damageable) en;
+                                if (d.getHealth() <= 6) {
                                     d.setHealth(0);
                                 } else {
                                     d.setHealth(d.getHealth() - 6);
@@ -53,21 +53,12 @@ public class GolemWeapon implements Listener {
                             arena.getPlayerHandler().getCanShot().remove(player);
                             new WeaponsCountDown(player, arena).runTaskTimer(Main.getInstance(), 0L, 20L);
                             player.sendMessage(ChatUtil.format(Messages.abilityused));
-                        } else {
-                            return;
                         }
                     } else {
                         player.sendMessage(ChatUtil.format(Messages.abilitynotavaible));
                     }
-                } else {
-                    return;
                 }
-            } else {
-                return;
             }
-        } else {
-            return;
         }
     }
-
 }

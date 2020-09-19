@@ -132,8 +132,7 @@ public class GameHandler {
             public void run() {
                if (GameHandler.this.arena.getPlayersManager().getCount() == 0) {
                GameHandler.this.stopArena();
-               return;
-            }
+               }
             }
         }, 0L, 1L);
     }
@@ -157,9 +156,7 @@ public class GameHandler {
                 arena.getPlayerHandler().getChicken().remove(player);
             } else if(arena.getPlayerHandler().getCanShot().contains(player)) {
                 arena.getPlayerHandler().getCanShot().remove(player);
-            } else if(arena.getPlayerHandler().getSpiderWeapon().contains(player)) {
-                arena.getPlayerHandler().getSpiderWeapon().remove(player);
-            }
+            } else arena.getPlayerHandler().getSpiderWeapon().remove(player);
         }
         this.arena.getStatusManager().setRunning(false);
         Bukkit.getScheduler().cancelTask(this.arenahandler);
@@ -176,7 +173,6 @@ public class GameHandler {
         if (this.arena.getPlayersManager().getCount() == 1) {
             this.arena.getPlayerHandler().leaveWinner(player, Messages.playerwontoplayer);
             this.broadcastWin(player);
-            return;
         }
     }
 

@@ -141,9 +141,7 @@ public class PlayerHandler {
                 getSlime().remove(player);
             } else if(getChicken().contains(player)) {
                 getChicken().remove(player);
-            }  else if(getCanShot().contains(player)) {
-                getCanShot().remove(player);
-            }
+            }  else getCanShot().remove(player);
         }
         Messages.sendMessage(player, msgtoplayer);
         SignEditor.getInstance().modifySigns(this.arena.getArenaName());
@@ -192,9 +190,7 @@ public class PlayerHandler {
                 getSlime().remove(player);
             } else if(getChicken().contains(player)) {
                 getChicken().remove(player);
-            } else if(getCanShot().contains(player)) {
-                getCanShot().remove(player);
-        }
+            } else getCanShot().remove(player);
 
         storage.restorePlayerGameMode(player);
         if (this.arena.getStructureManager().getTeleportDestination() == TeleportDestination.LOBBY && GlobalLobby.getInstance().isLobbyLocationWorldAvailable()) {

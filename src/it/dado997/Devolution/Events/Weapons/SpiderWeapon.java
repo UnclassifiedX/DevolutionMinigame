@@ -28,7 +28,7 @@ public class SpiderWeapon implements Listener {
 
         Arena arena = ArenaFile.getInstance().getPlayerArena(player.getName());
 
-        if(e.getAction() == Action.RIGHT_CLICK_BLOCK) {
+        if(e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR) {
             if(arena != null) {
                 if(arena.getPlayerHandler().getSpider().contains(player)) {
                     if(arena.getPlayerHandler().getCanShot().contains(player)) {

@@ -27,7 +27,7 @@ public class DevolutionCountDown extends BukkitRunnable {
             cancel();
         } else {
             time -= 1;
-            if(time == 5 || time == 4 || time == 3 || time == 3 || time == 2 || time == 1) {
+            if(time == 5 || time == 4 || time == 3 || time == 2 || time == 1) {
                 if(arena.getPlayerHandler().getPlayersDevoluting().contains(player)) {
                    player.sendMessage(ChatUtil.format(Messages.devoluting).replace("{TIME}", String.valueOf(time)));
                 }

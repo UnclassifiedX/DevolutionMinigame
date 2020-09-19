@@ -1,5 +1,6 @@
 package it.dado997.Devolution.Utils.CountDown;
 
+import it.dado997.Devolution.Events.Weapons.BlazeWeapon;
 import it.dado997.Devolution.Files.Messages;
 import it.dado997.Devolution.Game.Arena;
 import it.dado997.Devolution.Utils.ChatUtil;
@@ -22,6 +23,7 @@ public class WeaponsCountDown extends BukkitRunnable {
         if(time == 0) {
             arena.getPlayerHandler().getCanShot().add(player);
             player.sendMessage(ChatUtil.format(Messages.abilityavaible));
+            //BlazeWeapon.counter = 0;
             cancel();
         } else {
             time -= 1;

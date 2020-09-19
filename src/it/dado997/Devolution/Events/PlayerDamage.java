@@ -14,41 +14,32 @@ public class PlayerDamage implements Listener {
 
     @EventHandler
     public void onPlayerDamage(EntityDamageByEntityEvent e) {
-        Entity damager  = e.getDamager();
+        Entity damager = e.getDamager();
         Player player = (Player) e.getEntity();
         Arena arena = ArenaFile.getInstance().getPlayerArena(damager.getName());
-        if(e.getEntity() instanceof Player) {
-        if(arena != null) {
-        if(arena.getPlayerHandler().getGolem().contains(damager)) {
-            e.setDamage(5);
-        } else if(arena.getPlayerHandler().getBlaze().contains(damager)) {
-            e.setDamage(5);
-        } else if(arena.getPlayerHandler().getSpider().contains(damager)) {
-            if(arena.getPlayerHandler().getSpiderWeapon().contains(damager)) {
-                if(player instanceof Player) {
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 45, 0));
+        if (e.getEntity() instanceof Player) {
+            if (arena != null) {
+                if (arena.getPlayerHandler().getGolem().contains(damager)) {
+                    e.setDamage(5);
+                } else if (arena.getPlayerHandler().getBlaze().contains(damager)) {
+                    e.setDamage(5);
+                } else if (arena.getPlayerHandler().getSpider().contains(damager)) {
+                    if (arena.getPlayerHandler().getSpiderWeapon().contains(damager)) {
+                        if (player != null) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 45, 0));
+                            e.setDamage(4);
+                        }
+                    } else {
+                        e.setDamage(4);
+                    }
+                } else if (arena.getPlayerHandler().getCreeper().contains(damager)) {
                     e.setDamage(4);
-                } else {
-                    return;
+                } else if (arena.getPlayerHandler().getSlime().contains(damager)) {
+                    e.setDamage(3);
+                } else if (arena.getPlayerHandler().getChicken().contains(damager)) {
+                    e.setDamage(2);
                 }
-            } else {
-                e.setDamage(4);
             }
-        } else if(arena.getPlayerHandler().getCreeper().contains(damager)) {
-            e.setDamage(4);
-        } else if(arena.getPlayerHandler().getSlime().contains(damager)) {
-            e.setDamage(3);
-        } else if(arena.getPlayerHandler().getChicken().contains(damager)) {
-            e.setDamage(2);
-        } else {
-            return;
-        }
-        } else {
-            return;
-        }
-      } else {
-            return;
         }
     }
-
 }

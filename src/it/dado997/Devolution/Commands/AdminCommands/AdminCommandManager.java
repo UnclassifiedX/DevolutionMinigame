@@ -31,7 +31,7 @@ public class AdminCommandManager implements CommandExecutor {
         this.commandHandlers.put("enable", new EnableArenaSbCmd());
         this.commandHandlers.put("delete", new DeleteArenaSbCmd());
         this.commandHandlers.put("deletespec", new DeleteSpecSpwnSbCmd());
-        this.commandHandlers.put("setarena", new SetArenaSbCmd(this.ps));
+        this.commandHandlers.put("setarenabounds", new SetArenaBoundsSbCmd(this.ps));
         this.commandHandlers.put("setspawn", new SetSpawnSbCmd());
         this.commandHandlers.put("setspecspawn", new SetSpecSpawnSbCmd());
         this.commandHandlers.put("help", new HelpSbCmd());

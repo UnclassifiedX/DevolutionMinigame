@@ -27,14 +27,12 @@ public class StatusManager {
         return this.enabled;
     }
 
-    public boolean enableArena() {
+    public void enableArena() {
         if (this.arena.getStructureManager().isArenaConfigured()) {
             this.enabled = true;
             this.arena.getGameHandler().startArenaAntiLeaveHandler();
             SignEditor.getInstance().modifySigns(this.arena.getArenaName());
-            return true;
         }
-        return false;
     }
 
     public void disableArena() {

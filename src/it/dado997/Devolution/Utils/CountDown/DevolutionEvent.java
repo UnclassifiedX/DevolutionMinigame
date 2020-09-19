@@ -18,9 +18,7 @@ public class DevolutionEvent extends BukkitRunnable {
 
     @Override
     public void run() {
-        if(arena.getPlayerHandler().getPlayersDevoluting().contains(player)) {
-            arena.getPlayerHandler().getPlayersDevoluting().remove(player);
-        }
+        arena.getPlayerHandler().getPlayersDevoluting().remove(player);
         arena.getPlayerHandler().getPlayersCanDevolute().remove(player);
         player.teleport(arena.getStructureManager().getDevolutePoint());
         new Devoluted(player, arena).runTaskTimer(Main.getInstance(), 0L, 20L);

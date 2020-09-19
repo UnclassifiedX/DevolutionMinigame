@@ -16,26 +16,18 @@ public class PlayerStatusHandler implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onDamageByPlayer(final EntityDamageByEntityEvent e) {
         if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
-            final Player player = (Player)e.getEntity();
+            final Player player = (Player) e.getEntity();
             final Entity damager = e.getDamager();
             final Arena arena = ArenaFile.getInstance().getPlayerArena(player.getName());
-            if(e.getEntity() instanceof Player) {
-             if(arena != null) {
-                if(arena.getStatusManager().getIsInLobby() == true) {
-                    e.setCancelled(true);
-                } else if(arena.getPlayersManager().getSpectators().contains(damager)) {
-                    e.setCancelled(true);
-                } else {
-                    return;
+            if (e.getEntity() instanceof Player) {
+                if (arena != null) {
+                    if (arena.getStatusManager().getIsInLobby()) {
+                        e.setCancelled(true);
+                    } else if (arena.getPlayersManager().getSpectators().contains(damager)) {
+                        e.setCancelled(true);
+                    }
                 }
-            } else {
-                return;
             }
-            } else {
-                return;
-            }
-        } else {
-            return;
         }
     }
 

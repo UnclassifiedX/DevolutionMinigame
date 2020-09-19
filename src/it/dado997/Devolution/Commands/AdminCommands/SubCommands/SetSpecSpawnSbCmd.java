@@ -15,8 +15,8 @@ public class SetSpecSpawnSbCmd implements CommandHandler {
                 player.sendMessage("Disable arena first");
                 return true;
             }
-            if (arena.getStructureManager().setSpawnPoint(player, player.getLocation())) {
-                player.sendMessage("Spawnpoint set");
+            if (arena.getStructureManager().setSpectatorsSpawn(player, player.getLocation())) {
+                player.sendMessage("Spectator Spawnpoint set");
             }
         }
         else {
